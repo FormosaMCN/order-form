@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>營業用大包裝訂購單</title>
+<title>çæ¥­ç¨å¤§åè£è¨è³¼å®</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -84,7 +84,7 @@
   .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--red); }
   .form-textarea { resize: vertical; min-height: 80px; }
 
-  /* 記憶提示 banner */
+  /* è¨æ¶æç¤º banner */
   .memory-banner {
     background: linear-gradient(135deg, #EAF6FF, #D6EEF8);
     border: 1.5px solid #AED6F1;
@@ -105,7 +105,7 @@
   .info-box { background: #FEF9E7; border: 1px solid #F9E79F; border-radius: 8px; padding: 12px 14px; margin-bottom: 16px; }
   .info-box h4 { font-size: 12px; font-weight: 700; color: #7D6608; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
   .info-box ul { list-style: none; font-size: 11px; color: #6B5E00; line-height: 1.9; padding-left: 2px; }
-  .info-box ul li::before { content: '・'; }
+  .info-box ul li::before { content: 'ã»'; }
 
   /* Order summary */
   .summary-card { background: white; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
@@ -172,108 +172,108 @@
 </head>
 <body>
 
-<!-- ⚠️ 設定區：填入您的 Google Apps Script 網址 -->
+<!-- â ï¸ è¨­å®åï¼å¡«å¥æ¨ç Google Apps Script ç¶²å -->
 <script>
-  // ★★★ 請將下方的 https://script.google.com/macros/s/AKfycbx8-bifpVNLRPm-qoXPezTvNbaX6deezU7P6fmZzEhNmGfXC_D2eb0DkwRHm6aMSpRJ/exec 換成您的 Apps Script 部署網址 ★★★
+  // âââ è«å°ä¸æ¹ç https://script.google.com/macros/s/AKfycbx8-bifpVNLRPm-qoXPezTvNbaX6deezU7P6fmZzEhNmGfXC_D2eb0DkwRHm6aMSpRJ/exec æææ¨ç Apps Script é¨ç½²ç¶²å âââ
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx8-bifpVNLRPm-qoXPezTvNbaX6deezU7P6fmZzEhNmGfXC_D2eb0DkwRHm6aMSpRJ/exec';
-  // 業務通知 Email（可填多個，用逗號分隔），若不需要可留空
+  // æ¥­åéç¥ Emailï¼å¯å¡«å¤åï¼ç¨éèåéï¼ï¼è¥ä¸éè¦å¯çç©º
   const NOTIFY_EMAIL = 'yc_su@bimmer.tw';
 </script>
 
 <div class="header">
-  <div class="header-badge">營業用大包裝 · 常態商品</div>
-  <h1>客戶訂購單</h1>
-  <p>冷凍食品 · 含稅報價 · 最低1箱起訂</p>
+  <div class="header-badge">çæ¥­ç¨å¤§åè£ Â· å¸¸æåå</div>
+  <h1>å®¢æ¶è¨è³¼å®</h1>
+  <p>å·åé£å Â· å«ç¨å ±å¹ Â· æä½1ç®±èµ·è¨</p>
 </div>
 
 <div class="steps-bar">
-  <div class="step active" id="step1-tab"><span class="step-num">1</span>選商品</div>
-  <div class="step" id="step2-tab"><span class="step-num">2</span>填資料</div>
-  <div class="step" id="step3-tab"><span class="step-num">3</span>確認訂單</div>
+  <div class="step active" id="step1-tab"><span class="step-num">1</span>é¸åå</div>
+  <div class="step" id="step2-tab"><span class="step-num">2</span>å¡«è³æ</div>
+  <div class="step" id="step3-tab"><span class="step-num">3</span>ç¢ºèªè¨å®</div>
 </div>
 
 <!-- STEP 1 -->
 <div class="section active" id="step1">
   <div style="padding-top:14px;">
     <div class="cat-tabs">
-      <div class="cat-tab active" onclick="filterCat('all',this)">全部</div>
-      <div class="cat-tab" onclick="filterCat('bawan',this)">肉圓系列</div>
-      <div class="cat-tab" onclick="filterCat('soup',this)">湯品系列</div>
-      <div class="cat-tab" onclick="filterCat('noodle',this)">米米糆系列</div>
-      <div class="cat-tab" onclick="filterCat('other',this)">其他商品</div>
+      <div class="cat-tab active" onclick="filterCat('all',this)">å¨é¨</div>
+      <div class="cat-tab" onclick="filterCat('bawan',this)">èåç³»å</div>
+      <div class="cat-tab" onclick="filterCat('soup',this)">æ¹¯åç³»å</div>
+      <div class="cat-tab" onclick="filterCat('noodle',this)">ç±³ç±³ç³ç³»å</div>
+      <div class="cat-tab" onclick="filterCat('other',this)">å¶ä»åå</div>
     </div>
 
     <div class="product-card show" data-cat="bawan" id="p1">
-      <div class="card-top"><div class="card-icon">🥟</div><div class="card-info"><div class="card-name">牙齒肉圓<span class="card-badge badge-frozen">冷凍生鮮</span></div><div class="card-detail">每顆45g・100顆/袋・4袋/箱（400顆入）・-18°C保存12個月</div><div class="card-price">$5<span class="card-unit"> 元/顆</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p1',-1)">−</button><input class="qty-num" type="number" id="qty_p1" value="0" min="0" onchange="updateQty('p1')"><button class="qty-btn" onclick="changeQty('p1',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¥</div><div class="card-info"><div class="card-name">çé½èå<span class="card-badge badge-frozen">å·åçé®®</span></div><div class="card-detail">æ¯é¡45gã»100é¡/è¢ã»4è¢/ç®±ï¼400é¡å¥ï¼ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$5<span class="card-unit"> å/é¡</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p1',-1)">â</button><input class="qty-num" type="number" id="qty_p1" value="0" min="0" onchange="updateQty('p1')"><button class="qty-btn" onclick="changeQty('p1',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="bawan" id="p2">
-      <div class="card-top"><div class="card-icon">🥬</div><div class="card-info"><div class="card-name">高麗菜梅花肉圓<span class="card-badge badge-frozen">冷凍生鮮</span></div><div class="card-detail">每顆55g・100顆/袋・4袋/箱（400顆入）・-18°C保存12個月</div><div class="card-price">$6<span class="card-unit"> 元/顆</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p2',-1)">−</button><input class="qty-num" type="number" id="qty_p2" value="0" min="0" onchange="updateQty('p2')"><button class="qty-btn" onclick="changeQty('p2',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¥¬</div><div class="card-info"><div class="card-name">é«éºèæ¢è±èå<span class="card-badge badge-frozen">å·åçé®®</span></div><div class="card-detail">æ¯é¡55gã»100é¡/è¢ã»4è¢/ç®±ï¼400é¡å¥ï¼ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$6<span class="card-unit"> å/é¡</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p2',-1)">â</button><input class="qty-num" type="number" id="qty_p2" value="0" min="0" onchange="updateQty('p2')"><button class="qty-btn" onclick="changeQty('p2',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="bawan" id="p3">
-      <div class="card-top"><div class="card-icon">🍠</div><div class="card-info"><div class="card-name">芋頭梅花肉圓<span class="card-badge badge-frozen">冷凍生鮮</span></div><div class="card-detail">每顆55g・100顆/袋・4袋/箱（400顆入）・-18°C保存12個月</div><div class="card-price">$7<span class="card-unit"> 元/顆</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p3',-1)">−</button><input class="qty-num" type="number" id="qty_p3" value="0" min="0" onchange="updateQty('p3')"><button class="qty-btn" onclick="changeQty('p3',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð </div><div class="card-info"><div class="card-name">èé ­æ¢è±èå<span class="card-badge badge-frozen">å·åçé®®</span></div><div class="card-detail">æ¯é¡55gã»100é¡/è¢ã»4è¢/ç®±ï¼400é¡å¥ï¼ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$7<span class="card-unit"> å/é¡</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p3',-1)">â</button><input class="qty-num" type="number" id="qty_p3" value="0" min="0" onchange="updateQty('p3')"><button class="qty-btn" onclick="changeQty('p3',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="bawan" id="p4">
-      <div class="card-top"><div class="card-icon">🌿</div><div class="card-info"><div class="card-name">葉子肉圓<span class="card-badge badge-frozen">冷凍生鮮</span></div><div class="card-detail">每顆53g・100顆/袋・4袋/箱（400顆入）・-18°C保存12個月</div><div class="card-price">$6<span class="card-unit"> 元/顆</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p4',-1)">−</button><input class="qty-num" type="number" id="qty_p4" value="0" min="0" onchange="updateQty('p4')"><button class="qty-btn" onclick="changeQty('p4',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¿</div><div class="card-info"><div class="card-name">èå­èå<span class="card-badge badge-frozen">å·åçé®®</span></div><div class="card-detail">æ¯é¡53gã»100é¡/è¢ã»4è¢/ç®±ï¼400é¡å¥ï¼ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$6<span class="card-unit"> å/é¡</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p4',-1)">â</button><input class="qty-num" type="number" id="qty_p4" value="0" min="0" onchange="updateQty('p4')"><button class="qty-btn" onclick="changeQty('p4',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="soup" id="p5">
-      <div class="card-top"><div class="card-icon">🍚</div><div class="card-info"><div class="card-name">傳統米糕<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">每顆150g・10顆/袋・12袋/箱（120顆入）・-18°C保存12個月</div><div class="card-price">$18<span class="card-unit"> 元/顆</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p5',-1)">−</button><input class="qty-num" type="number" id="qty_p5" value="0" min="0" onchange="updateQty('p5')"><button class="qty-btn" onclick="changeQty('p5',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">å³çµ±ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">æ¯é¡150gã»10é¡/è¢ã»12è¢/ç®±ï¼120é¡å¥ï¼ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$18<span class="card-unit"> å/é¡</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p5',-1)">â</button><input class="qty-num" type="number" id="qty_p5" value="0" min="0" onchange="updateQty('p5')"><button class="qty-btn" onclick="changeQty('p5',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="soup" id="p6">
-      <div class="card-top"><div class="card-icon">🍵</div><div class="card-info"><div class="card-name">四神湯<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">每包255g・紙箱80入 / 保麗龍60入・-18°C保存12個月</div><div class="card-price">$28<span class="card-unit"> 元/包</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p6',-1)">−</button><input class="qty-num" type="number" id="qty_p6" value="0" min="0" onchange="updateQty('p6')"><button class="qty-btn" onclick="changeQty('p6',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ðµ</div><div class="card-info"><div class="card-name">åç¥æ¹¯<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">æ¯å255gã»ç´ç®±80å¥ / ä¿éºé¾60å¥ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$28<span class="card-unit"> å/å</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p6',-1)">â</button><input class="qty-num" type="number" id="qty_p6" value="0" min="0" onchange="updateQty('p6')"><button class="qty-btn" onclick="changeQty('p6',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="soup" id="p7">
-      <div class="card-top"><div class="card-icon">🍖</div><div class="card-info"><div class="card-name">排骨酥湯<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">每包235g・紙箱80入 / 保麗龍60入・-18°C保存12個月</div><div class="card-price">$28<span class="card-unit"> 元/包</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p7',-1)">−</button><input class="qty-num" type="number" id="qty_p7" value="0" min="0" onchange="updateQty('p7')"><button class="qty-btn" onclick="changeQty('p7',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">æéª¨é¥æ¹¯<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">æ¯å235gã»ç´ç®±80å¥ / ä¿éºé¾60å¥ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$28<span class="card-unit"> å/å</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p7',-1)">â</button><input class="qty-num" type="number" id="qty_p7" value="0" min="0" onchange="updateQty('p7')"><button class="qty-btn" onclick="changeQty('p7',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p8">
-      <div class="card-top"><div class="card-icon">🍜</div><div class="card-info"><div class="card-name">米米糆 200g（小包）<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">每包200g・20包/袋・3袋/箱（60入）・-18°C保存12個月</div><div class="card-price">$13<span class="card-unit"> 元/包</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p8',-1)">−</button><input class="qty-num" type="number" id="qty_p8" value="0" min="0" onchange="updateQty('p8')"><button class="qty-btn" onclick="changeQty('p8',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">ç±³ç±³ç³ 200gï¼å°åï¼<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">æ¯å200gã»20å/è¢ã»3è¢/ç®±ï¼60å¥ï¼ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$13<span class="card-unit"> å/å</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p8',-1)">â</button><input class="qty-num" type="number" id="qty_p8" value="0" min="0" onchange="updateQty('p8')"><button class="qty-btn" onclick="changeQty('p8',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p9">
-      <div class="card-top"><div class="card-icon">🍜</div><div class="card-info"><div class="card-name">米米糆 3000g（大包）<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">每包3000g・3包/箱・-18°C保存12個月</div><div class="card-price">$195<span class="card-unit"> 元/包</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p9',-1)">−</button><input class="qty-num" type="number" id="qty_p9" value="0" min="0" onchange="updateQty('p9')"><button class="qty-btn" onclick="changeQty('p9',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">ç±³ç±³ç³ 3000gï¼å¤§åï¼<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">æ¯å3000gã»3å/ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$195<span class="card-unit"> å/å</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p9',-1)">â</button><input class="qty-num" type="number" id="qty_p9" value="0" min="0" onchange="updateQty('p9')"><button class="qty-btn" onclick="changeQty('p9',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p10">
-      <div class="card-top"><div class="card-icon">🍜</div><div class="card-info"><div class="card-name">台式懷舊肉燥米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋肉燥100g＋油膏30g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$40<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p10',-1)">−</button><input class="qty-num" type="number" id="qty_p10" value="0" min="0" onchange="updateQty('p10')"><button class="qty-btn" onclick="changeQty('p10',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">å°å¼æ·èèç¥ç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼èç¥100gï¼æ²¹è30gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$40<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p10',-1)">â</button><input class="qty-num" type="number" id="qty_p10" value="0" min="0" onchange="updateQty('p10')"><button class="qty-btn" onclick="changeQty('p10',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p11">
-      <div class="card-top"><div class="card-icon">🍜</div><div class="card-info"><div class="card-name">眷村老鄉味酢醬米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋酢醬80g＋油膏30g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$50<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p11',-1)">−</button><input class="qty-num" type="number" id="qty_p11" value="0" min="0" onchange="updateQty('p11')"><button class="qty-btn" onclick="changeQty('p11',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">ç·æèéå³é¢é¬ç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼é¢é¬80gï¼æ²¹è30gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$50<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p11',-1)">â</button><input class="qty-num" type="number" id="qty_p11" value="0" min="0" onchange="updateQty('p11')"><button class="qty-btn" onclick="changeQty('p11',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p12">
-      <div class="card-top"><div class="card-icon">🌶️</div><div class="card-info"><div class="card-name">汕頭秘製沙茶米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋沙茶醬45g＋油膏30g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$30<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p12',-1)">−</button><input class="qty-num" type="number" id="qty_p12" value="0" min="0" onchange="updateQty('p12')"><button class="qty-btn" onclick="changeQty('p12',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¶ï¸</div><div class="card-info"><div class="card-name">æ±é ­ç§è£½æ²è¶ç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼æ²è¶é¬45gï¼æ²¹è30gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$30<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p12',-1)">â</button><input class="qty-num" type="number" id="qty_p12" value="0" min="0" onchange="updateQty('p12')"><button class="qty-btn" onclick="changeQty('p12',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p13">
-      <div class="card-top"><div class="card-icon">🌶️</div><div class="card-info"><div class="card-name">三椒香菜皮蛋米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋醬包50g＋油膏30g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$35<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p13',-1)">−</button><input class="qty-num" type="number" id="qty_p13" value="0" min="0" onchange="updateQty('p13')"><button class="qty-btn" onclick="changeQty('p13',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¶ï¸</div><div class="card-info"><div class="card-name">ä¸æ¤é¦èç®èç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼é¬å50gï¼æ²¹è30gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$35<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p13',-1)">â</button><input class="qty-num" type="number" id="qty_p13" value="0" min="0" onchange="updateQty('p13')"><button class="qty-btn" onclick="changeQty('p13',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p14">
-      <div class="card-top"><div class="card-icon">🌶️</div><div class="card-info"><div class="card-name">娘惹沙嗲乾拌米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋沙嗲醬50g＋油膏30g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$30<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p14',-1)">−</button><input class="qty-num" type="number" id="qty_p14" value="0" min="0" onchange="updateQty('p14')"><button class="qty-btn" onclick="changeQty('p14',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¶ï¸</div><div class="card-info"><div class="card-name">å¨æ¹æ²å²ä¹¾æç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼æ²å²é¬50gï¼æ²¹è30gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$30<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p14',-1)">â</button><input class="qty-num" type="number" id="qty_p14" value="0" min="0" onchange="updateQty('p14')"><button class="qty-btn" onclick="changeQty('p14',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p15">
-      <div class="card-top"><div class="card-icon">🌶️</div><div class="card-info"><div class="card-name">酸辣冬蔭功湯米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋冬蔭功湯包180g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$65<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p15',-1)">−</button><input class="qty-num" type="number" id="qty_p15" value="0" min="0" onchange="updateQty('p15')"><button class="qty-btn" onclick="changeQty('p15',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¶ï¸</div><div class="card-info"><div class="card-name">é¸è¾£å¬è­åæ¹¯ç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼å¬è­åæ¹¯å180gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$65<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p15',-1)">â</button><input class="qty-num" type="number" id="qty_p15" value="0" min="0" onchange="updateQty('p15')"><button class="qty-btn" onclick="changeQty('p15',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="noodle" id="p16">
-      <div class="card-top"><div class="card-icon">🌶️</div><div class="card-info"><div class="card-name">馬來叻沙椰漿湯米米糆<span class="card-badge badge-cooked">熟食加熱即可</span></div><div class="card-detail">米米糆200g＋叻沙湯包180g・40包/紙箱・-18°C保存12個月</div><div class="card-price">$55<span class="card-unit"> 元/袋</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p16',-1)">−</button><input class="qty-num" type="number" id="qty_p16" value="0" min="0" onchange="updateQty('p16')"><button class="qty-btn" onclick="changeQty('p16',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¶ï¸</div><div class="card-info"><div class="card-name">é¦¬ä¾å»æ²æ¤°æ¼¿æ¹¯ç±³ç±³ç³<span class="card-badge badge-cooked">çé£å ç±å³å¯</span></div><div class="card-detail">ç±³ç±³ç³200gï¼å»æ²æ¹¯å180gã»40å/ç´ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$55<span class="card-unit"> å/è¢</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p16',-1)">â</button><input class="qty-num" type="number" id="qty_p16" value="0" min="0" onchange="updateQty('p16')"><button class="qty-btn" onclick="changeQty('p16',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="other" id="p17">
-      <div class="card-top"><div class="card-icon">🥩</div><div class="card-info"><div class="card-name">日式燒肉<span class="card-badge badge-frozen">冷凍生食</span></div><div class="card-detail">每包2斤・15包/箱・-18°C保存12個月</div><div class="card-price">$300<span class="card-unit"> 元/包</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p17',-1)">−</button><input class="qty-num" type="number" id="qty_p17" value="0" min="0" onchange="updateQty('p17')"><button class="qty-btn" onclick="changeQty('p17',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð¥©</div><div class="card-info"><div class="card-name">æ¥å¼çè<span class="card-badge badge-frozen">å·åçé£</span></div><div class="card-detail">æ¯å2æ¤ã»15å/ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$300<span class="card-unit"> å/å</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p17',-1)">â</button><input class="qty-num" type="number" id="qty_p17" value="0" min="0" onchange="updateQty('p17')"><button class="qty-btn" onclick="changeQty('p17',1)">+</button></div></div>
     </div>
     <div class="product-card show" data-cat="other" id="p18">
-      <div class="card-top"><div class="card-icon">🍛</div><div class="card-info"><div class="card-name">瘦瘦肉燥<span class="card-badge badge-cooked">冷凍熟食</span></div><div class="card-detail">每包3kg・6包/箱・-18°C保存12個月</div><div class="card-price">$800<span class="card-unit"> 元/包</span></div></div></div>
-      <div class="card-qty"><div class="qty-label">訂購箱數<br><span style="font-size:10px;color:#C0392B">最低1箱</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p18',-1)">−</button><input class="qty-num" type="number" id="qty_p18" value="0" min="0" onchange="updateQty('p18')"><button class="qty-btn" onclick="changeQty('p18',1)">+</button></div></div>
+      <div class="card-top"><div class="card-icon">ð</div><div class="card-info"><div class="card-name">ç¦ç¦èç¥<span class="card-badge badge-cooked">å·åçé£</span></div><div class="card-detail">æ¯å3kgã»6å/ç®±ã»-18Â°Cä¿å­12åæ</div><div class="card-price">$800<span class="card-unit"> å/å</span></div></div></div>
+      <div class="card-qty"><div class="qty-label">è¨è³¼ç®±æ¸<br><span style="font-size:10px;color:#C0392B">æä½1ç®±</span></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty('p18',-1)">â</button><input class="qty-num" type="number" id="qty_p18" value="0" min="0" onchange="updateQty('p18')"><button class="qty-btn" onclick="changeQty('p18',1)">+</button></div></div>
     </div>
   </div>
 </div>
@@ -282,58 +282,58 @@
 <div class="section" id="step2">
   <div style="padding-top:14px;">
 
-    <!-- 記憶客戶資料 banner（有儲存資料時才顯示）-->
+    <!-- è¨æ¶å®¢æ¶è³æ bannerï¼æå²å­è³æææé¡¯ç¤ºï¼-->
     <div class="memory-banner" id="memory-banner" style="display:none;">
-      <div class="memory-banner-icon">🙋</div>
+      <div class="memory-banner-icon">ð</div>
       <div class="memory-banner-text">
-        <strong>歡迎回來！</strong>
-        <span>已自動填入上次的聯絡資料</span>
+        <strong>æ­¡è¿åä¾ï¼</strong>
+        <span>å·²èªåå¡«å¥ä¸æ¬¡çè¯çµ¡è³æ</span>
       </div>
-      <button class="memory-banner-btn" onclick="clearMemory()">清除記憶</button>
+      <button class="memory-banner-btn" onclick="clearMemory()">æ¸é¤è¨æ¶</button>
     </div>
 
-    <div class="section-label">聯絡資訊</div>
+    <div class="section-label">è¯çµ¡è³è¨</div>
     <div class="form-group">
-      <label class="form-label">公司 / 商號名稱<span class="form-required">*</span></label>
-      <input class="form-input" type="text" id="f_company" placeholder="請輸入公司或商號名稱">
+      <label class="form-label">å¬å¸ / åèåç¨±<span class="form-required">*</span></label>
+      <input class="form-input" type="text" id="f_company" placeholder="è«è¼¸å¥å¬å¸æåèåç¨±">
     </div>
     <div class="form-group">
-      <label class="form-label">聯絡人姓名<span class="form-required">*</span></label>
-      <input class="form-input" type="text" id="f_name" placeholder="請輸入姓名">
+      <label class="form-label">è¯çµ¡äººå§å<span class="form-required">*</span></label>
+      <input class="form-input" type="text" id="f_name" placeholder="è«è¼¸å¥å§å">
     </div>
     <div class="form-group">
-      <label class="form-label">聯絡電話<span class="form-required">*</span></label>
+      <label class="form-label">è¯çµ¡é»è©±<span class="form-required">*</span></label>
       <input class="form-input" type="tel" id="f_phone" placeholder="0912-345-678">
     </div>
     <div class="form-group">
-      <label class="form-label">電子信箱</label>
+      <label class="form-label">é»å­ä¿¡ç®±</label>
       <input class="form-input" type="email" id="f_email" placeholder="example@email.com">
     </div>
     <div class="form-group">
-      <label class="form-label">送貨地址<span class="form-required">*</span></label>
-      <input class="form-input" type="text" id="f_address" placeholder="請輸入完整送貨地址">
+      <label class="form-label">éè²¨å°å<span class="form-required">*</span></label>
+      <input class="form-input" type="text" id="f_address" placeholder="è«è¼¸å¥å®æ´éè²¨å°å">
     </div>
 
-    <div class="section-label" style="margin-top:20px;">配送方式</div>
+    <div class="section-label" style="margin-top:20px;">ééæ¹å¼</div>
     <div class="form-group">
       <div class="radio-group">
-        <label class="radio-option"><input type="radio" name="delivery" value="blackcat" checked><div class="radio-option-text">黑貓宅急便（冷凍配送）<br><span class="radio-option-sub">運費 $260/箱，滿10箱免運</span></div></label>
-        <label class="radio-option"><input type="radio" name="delivery" value="daerong"><div class="radio-option-text">大榮貨運（冷凍配送）<br><span class="radio-option-sub">運費 $260/箱，滿10箱免運</span></div></label>
-        <label class="radio-option"><input type="radio" name="delivery" value="company_tainan"><div class="radio-option-text">公司車配送—台南地區（一、三、五）<br><span class="radio-option-sub">訂單須滿5箱/次</span></div></label>
-        <label class="radio-option"><input type="radio" name="delivery" value="company_kaohsiung"><div class="radio-option-text">公司車配送—高雄地區（二、四）<br><span class="radio-option-sub">訂單須滿5箱/次</span></div></label>
+        <label class="radio-option"><input type="radio" name="delivery" value="blackcat" checked><div class="radio-option-text">é»è²å®æ¥ä¾¿ï¼å·åééï¼<br><span class="radio-option-sub">éè²» $260/ç®±ï¼æ»¿10ç®±åé</span></div></label>
+        <label class="radio-option"><input type="radio" name="delivery" value="daerong"><div class="radio-option-text">å¤§æ¦®è²¨éï¼å·åééï¼<br><span class="radio-option-sub">éè²» $260/ç®±ï¼æ»¿10ç®±åé</span></div></label>
+        <label class="radio-option"><input type="radio" name="delivery" value="company_tainan"><div class="radio-option-text">å¬å¸è»ééâå°åå°åï¼ä¸ãä¸ãäºï¼<br><span class="radio-option-sub">è¨å®é æ»¿5ç®±/æ¬¡</span></div></label>
+        <label class="radio-option"><input type="radio" name="delivery" value="company_kaohsiung"><div class="radio-option-text">å¬å¸è»ééâé«éå°åï¼äºãåï¼<br><span class="radio-option-sub">è¨å®é æ»¿5ç®±/æ¬¡</span></div></label>
       </div>
     </div>
     <div class="form-group">
-      <label class="form-label">備註</label>
-      <textarea class="form-textarea" id="f_note" placeholder="如有特殊需求請在此說明"></textarea>
+      <label class="form-label">åè¨»</label>
+      <textarea class="form-textarea" id="f_note" placeholder="å¦æç¹æ®éæ±è«å¨æ­¤èªªæ"></textarea>
     </div>
     <div class="info-box">
-      <h4>📋 訂購須知</h4>
+      <h4>ð è¨è³¼é ç¥</h4>
       <ul>
-        <li>報價含稅，運費另計 $260/箱，滿10箱免運</li>
-        <li>下訂單後 5 天內出貨</li>
-        <li>付款方式：月結30天匯款（匯費不可內扣）</li>
-        <li>台灣外島運費另議</li>
+        <li>å ±å¹å«ç¨ï¼éè²»å¦è¨ $260/ç®±ï¼æ»¿10ç®±åé</li>
+        <li>ä¸è¨å®å¾ 5 å¤©å§åºè²¨</li>
+        <li>ä»æ¬¾æ¹å¼ï¼æçµ30å¤©å¯æ¬¾ï¼å¯è²»ä¸å¯å§æ£ï¼</li>
+        <li>å°ç£å¤å³¶éè²»å¦è­°</li>
       </ul>
     </div>
   </div>
@@ -342,30 +342,30 @@
 <!-- STEP 3 -->
 <div class="section" id="step3">
   <div style="padding-top:14px;">
-    <div class="section-label">訂單確認</div>
+    <div class="section-label">è¨å®ç¢ºèª</div>
     <div class="summary-card">
-      <div class="summary-title">📦 訂購商品</div>
+      <div class="summary-title">ð¦ è¨è³¼åå</div>
       <div id="summary-items"></div>
       <div class="total-row">
-        <div><div class="total-label">預估商品金額（含稅）</div><div class="total-note">運費依箱數計算，由業務確認後通知</div></div>
+        <div><div class="total-label">é ä¼°ååéé¡ï¼å«ç¨ï¼</div><div class="total-note">éè²»ä¾ç®±æ¸è¨ç®ï¼ç±æ¥­åç¢ºèªå¾éç¥</div></div>
         <div class="total-amount" id="summary-total">$0</div>
       </div>
     </div>
     <div class="summary-card">
-      <div class="summary-title">👤 客戶資料</div>
-      <div class="summary-row"><span>公司名稱</span><strong id="r_company">—</strong></div>
-      <div class="summary-row"><span>聯絡人</span><strong id="r_name">—</strong></div>
-      <div class="summary-row"><span>電話</span><strong id="r_phone">—</strong></div>
-      <div class="summary-row"><span>送貨地址</span><strong id="r_address" style="max-width:180px;text-align:right">—</strong></div>
-      <div class="summary-row"><span>配送方式</span><strong id="r_delivery">—</strong></div>
-      <div class="summary-row" id="r_note_row" style="display:none"><span>備註</span><strong id="r_note" style="max-width:180px;text-align:right">—</strong></div>
+      <div class="summary-title">ð¤ å®¢æ¶è³æ</div>
+      <div class="summary-row"><span>å¬å¸åç¨±</span><strong id="r_company">â</strong></div>
+      <div class="summary-row"><span>è¯çµ¡äºº</span><strong id="r_name">â</strong></div>
+      <div class="summary-row"><span>é»è©±</span><strong id="r_phone">â</strong></div>
+      <div class="summary-row"><span>éè²¨å°å</span><strong id="r_address" style="max-width:180px;text-align:right">â</strong></div>
+      <div class="summary-row"><span>ééæ¹å¼</span><strong id="r_delivery">â</strong></div>
+      <div class="summary-row" id="r_note_row" style="display:none"><span>åè¨»</span><strong id="r_note" style="max-width:180px;text-align:right">â</strong></div>
     </div>
     <div class="info-box">
-      <h4>✅ 送出後處理方式</h4>
+      <h4>â éåºå¾èçæ¹å¼</h4>
       <ul>
-        <li>訂單送出後，業務人員將於 1 個工作天內與您確認</li>
-        <li>請保留訂單編號以供查詢</li>
-        <li>如需修改請於出貨前聯繫業務</li>
+        <li>è¨å®éåºå¾ï¼æ¥­åäººå¡å°æ¼ 1 åå·¥ä½å¤©å§èæ¨ç¢ºèª</li>
+        <li>è«ä¿çè¨å®ç·¨èä»¥ä¾æ¥è©¢</li>
+        <li>å¦éä¿®æ¹è«æ¼åºè²¨åè¯ç¹«æ¥­å</li>
       </ul>
     </div>
   </div>
@@ -374,68 +374,68 @@
 <!-- SUCCESS -->
 <div class="section" id="step4">
   <div class="success-wrap">
-    <div class="success-icon">🎉</div>
-    <div class="success-title">訂單已送出！</div>
-    <div class="success-sub">感謝您的訂購<br>業務人員將於1個工作天內與您聯繫確認</div>
+    <div class="success-icon">ð</div>
+    <div class="success-title">è¨å®å·²éåºï¼</div>
+    <div class="success-sub">æè¬æ¨çè¨è³¼<br>æ¥­åäººå¡å°æ¼1åå·¥ä½å¤©å§èæ¨è¯ç¹«ç¢ºèª</div>
     <div class="order-number">
-      <p>您的訂單編號</p>
-      <h3 id="order-id">—</h3>
+      <p>æ¨çè¨å®ç·¨è</p>
+      <h3 id="order-id">â</h3>
     </div>
     <div class="order-detail" id="success-detail"></div>
-    <button class="btn-new-order" onclick="resetAll()">繼續下單</button>
+    <button class="btn-new-order" onclick="resetAll()">ç¹¼çºä¸å®</button>
   </div>
 </div>
 
 <!-- Bottom Bar -->
 <div class="bottom-bar" id="bottom-bar">
-  <button class="btn-back" id="btn-back" onclick="goBack()" style="display:none">← 返回</button>
+  <button class="btn-back" id="btn-back" onclick="goBack()" style="display:none">â è¿å</button>
   <button class="btn-next" id="btn-next" onclick="goNext()">
-    選好了，填寫資料 →
-    <span class="cart-count" id="cart-badge" style="display:none">0箱</span>
+    é¸å¥½äºï¼å¡«å¯«è³æ â
+    <span class="cart-count" id="cart-badge" style="display:none">0ç®±</span>
   </button>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- 送出中 Spinner -->
+<!-- éåºä¸­ Spinner -->
 <div class="spinner-overlay" id="spinner">
   <div class="spinner-box">
     <div class="spinner"></div>
-    <p>訂單送出中，請稍候…</p>
+    <p>è¨å®éåºä¸­ï¼è«ç¨åâ¦</p>
   </div>
 </div>
 
 <script>
-// ─── 商品資料 ───────────────────────────────────────────
+// âââ ååè³æ âââââââââââââââââââââââââââââââââââââââââââ
 const products = {
-  p1:  { name: '牙齒肉圓',             unit: '顆', perBox: 400, price: 5   },
-  p2:  { name: '高麗菜梅花肉圓',       unit: '顆', perBox: 400, price: 6   },
-  p3:  { name: '芋頭梅花肉圓',         unit: '顆', perBox: 400, price: 7   },
-  p4:  { name: '葉子肉圓',             unit: '顆', perBox: 400, price: 6   },
-  p5:  { name: '傳統米糕',             unit: '顆', perBox: 120, price: 18  },
-  p6:  { name: '四神湯',               unit: '包', perBox: 80,  price: 28  },
-  p7:  { name: '排骨酥湯',             unit: '包', perBox: 80,  price: 28  },
-  p8:  { name: '米米糆 200g（小包）',  unit: '包', perBox: 60,  price: 13  },
-  p9:  { name: '米米糆 3000g（大包）', unit: '包', perBox: 3,   price: 195 },
-  p10: { name: '台式懷舊肉燥米米糆',   unit: '袋', perBox: 40,  price: 40  },
-  p11: { name: '眷村老鄉味酢醬米米糆', unit: '袋', perBox: 40,  price: 50  },
-  p12: { name: '汕頭秘製沙茶米米糆',   unit: '袋', perBox: 40,  price: 30  },
-  p13: { name: '三椒香菜皮蛋米米糆',   unit: '袋', perBox: 40,  price: 35  },
-  p14: { name: '娘惹沙嗲乾拌米米糆',   unit: '袋', perBox: 40,  price: 30  },
-  p15: { name: '酸辣冬蔭功湯米米糆',   unit: '袋', perBox: 40,  price: 65  },
-  p16: { name: '馬來叻沙椰漿湯米米糆', unit: '袋', perBox: 40,  price: 55  },
-  p17: { name: '日式燒肉',             unit: '包', perBox: 15,  price: 300 },
-  p18: { name: '瘦瘦肉燥',             unit: '包', perBox: 6,   price: 800 },
+  p1:  { name: 'çé½èå',             unit: 'é¡', perBox: 400, price: 5   },
+  p2:  { name: 'é«éºèæ¢è±èå',       unit: 'é¡', perBox: 400, price: 6   },
+  p3:  { name: 'èé ­æ¢è±èå',         unit: 'é¡', perBox: 400, price: 7   },
+  p4:  { name: 'èå­èå',             unit: 'é¡', perBox: 400, price: 6   },
+  p5:  { name: 'å³çµ±ç±³ç³',             unit: 'é¡', perBox: 120, price: 18  },
+  p6:  { name: 'åç¥æ¹¯',               unit: 'å', perBox: 80,  price: 28  },
+  p7:  { name: 'æéª¨é¥æ¹¯',             unit: 'å', perBox: 80,  price: 28  },
+  p8:  { name: 'ç±³ç±³ç³ 200gï¼å°åï¼',  unit: 'å', perBox: 60,  price: 13  },
+  p9:  { name: 'ç±³ç±³ç³ 3000gï¼å¤§åï¼', unit: 'å', perBox: 3,   price: 195 },
+  p10: { name: 'å°å¼æ·èèç¥ç±³ç±³ç³',   unit: 'è¢', perBox: 40,  price: 40  },
+  p11: { name: 'ç·æèéå³é¢é¬ç±³ç±³ç³', unit: 'è¢', perBox: 40,  price: 50  },
+  p12: { name: 'æ±é ­ç§è£½æ²è¶ç±³ç±³ç³',   unit: 'è¢', perBox: 40,  price: 30  },
+  p13: { name: 'ä¸æ¤é¦èç®èç±³ç±³ç³',   unit: 'è¢', perBox: 40,  price: 35  },
+  p14: { name: 'å¨æ¹æ²å²ä¹¾æç±³ç±³ç³',   unit: 'è¢', perBox: 40,  price: 30  },
+  p15: { name: 'é¸è¾£å¬è­åæ¹¯ç±³ç±³ç³',   unit: 'è¢', perBox: 40,  price: 65  },
+  p16: { name: 'é¦¬ä¾å»æ²æ¤°æ¼¿æ¹¯ç±³ç±³ç³', unit: 'è¢', perBox: 40,  price: 55  },
+  p17: { name: 'æ¥å¼çè',             unit: 'å', perBox: 15,  price: 300 },
+  p18: { name: 'ç¦ç¦èç¥',             unit: 'å', perBox: 6,   price: 800 },
 };
 const deliveryLabels = {
-  blackcat: '黑貓宅急便', daerong: '大榮貨運',
-  company_tainan: '公司車配送（台南）', company_kaohsiung: '公司車配送（高雄）',
+  blackcat: 'é»è²å®æ¥ä¾¿', daerong: 'å¤§æ¦®è²¨é',
+  company_tainan: 'å¬å¸è»ééï¼å°åï¼', company_kaohsiung: 'å¬å¸è»ééï¼é«éï¼',
 };
 
 let currentStep = 1;
 const STORAGE_KEY = 'formosa_customer_info';
 
-// ─── 記憶功能 ────────────────────────────────────────────
+// âââ è¨æ¶åè½ ââââââââââââââââââââââââââââââââââââââââââââ
 function loadMemory() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -450,7 +450,7 @@ function loadMemory() {
       const r = document.querySelector(`input[name="delivery"][value="${info.delivery}"]`);
       if (r) r.checked = true;
     }
-    // 顯示歡迎回來 banner
+    // é¡¯ç¤ºæ­¡è¿åä¾ banner
     if (info.company || info.name) {
       document.getElementById('memory-banner').style.display = 'flex';
     }
@@ -474,10 +474,10 @@ function saveMemory() {
 function clearMemory() {
   try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
   document.getElementById('memory-banner').style.display = 'none';
-  showToast('已清除記憶資料');
+  showToast('å·²æ¸é¤è¨æ¶è³æ');
 }
 
-// ─── 商品互動 ────────────────────────────────────────────
+// âââ ååäºå ââââââââââââââââââââââââââââââââââââââââââââ
 function getQty(id) { return parseInt(document.getElementById('qty_' + id).value) || 0; }
 
 function changeQty(id, delta) {
@@ -503,7 +503,7 @@ function updateCartBadge() {
   Object.keys(products).forEach(id => total += getQty(id));
   const badge = document.getElementById('cart-badge');
   badge.style.display = total > 0 ? 'inline-block' : 'none';
-  badge.textContent = total + '箱';
+  badge.textContent = total + 'ç®±';
 }
 function filterCat(cat, el) {
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
@@ -513,7 +513,7 @@ function filterCat(cat, el) {
   });
 }
 
-// ─── Toast ──────────────────────────────────────────────
+// âââ Toast ââââââââââââââââââââââââââââââââââââââââââââââ
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -521,20 +521,20 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2200);
 }
 
-// ─── 步驟導航 ────────────────────────────────────────────
+// âââ æ­¥é©å°èª ââââââââââââââââââââââââââââââââââââââââââââ
 function goNext() {
   if (currentStep === 1) {
     let total = 0;
     Object.keys(products).forEach(id => total += getQty(id));
-    if (total === 0) { showToast('請至少選擇一項商品'); return; }
-    loadMemory();  // 進入第2步時載入記憶資料
+    if (total === 0) { showToast('è«è³å°é¸æä¸é åå'); return; }
+    loadMemory();  // é²å¥ç¬¬2æ­¥æè¼å¥è¨æ¶è³æ
     goStep(2);
   } else if (currentStep === 2) {
     const comp  = document.getElementById('f_company').value.trim();
     const name  = document.getElementById('f_name').value.trim();
     const phone = document.getElementById('f_phone').value.trim();
     const addr  = document.getElementById('f_address').value.trim();
-    if (!comp || !name || !phone || !addr) { showToast('請填寫必填欄位（*）'); return; }
+    if (!comp || !name || !phone || !addr) { showToast('è«å¡«å¯«å¿å¡«æ¬ä½ï¼*ï¼'); return; }
     buildSummary();
     goStep(3);
   } else if (currentStep === 3) {
@@ -556,19 +556,19 @@ function goStep(n) {
   const next = document.getElementById('btn-next');
   if (currentStep === 1) {
     back.style.display = 'none';
-    next.innerHTML = '選好了，填寫資料 → <span class="cart-count" id="cart-badge" style="display:none">0箱</span>';
+    next.innerHTML = 'é¸å¥½äºï¼å¡«å¯«è³æ â <span class="cart-count" id="cart-badge" style="display:none">0ç®±</span>';
     updateCartBadge();
   } else if (currentStep === 2) {
     back.style.display = 'block';
-    next.innerHTML = '下一步，確認訂單 →';
+    next.innerHTML = 'ä¸ä¸æ­¥ï¼ç¢ºèªè¨å® â';
   } else if (currentStep === 3) {
     back.style.display = 'block';
-    next.innerHTML = '✓ 送出訂單';
+    next.innerHTML = 'â éåºè¨å®';
   }
   window.scrollTo(0, 0);
 }
 
-// ─── 訂單摘要 ────────────────────────────────────────────
+// âââ è¨å®æè¦ ââââââââââââââââââââââââââââââââââââââââââââ
 function buildSummary() {
   let html = '', grandTotal = 0;
   Object.entries(products).forEach(([id, p]) => {
@@ -576,9 +576,9 @@ function buildSummary() {
     if (!boxes) return;
     const sub = boxes * p.perBox * p.price;
     grandTotal += sub;
-    html += `<div class="summary-row"><div><div class="summary-item-name">${p.name}</div><div class="summary-item-sub">${boxes}箱 × ${p.perBox}${p.unit} × $${p.price}</div></div><strong>$${sub.toLocaleString()}</strong></div>`;
+    html += `<div class="summary-row"><div><div class="summary-item-name">${p.name}</div><div class="summary-item-sub">${boxes}ç®± Ã ${p.perBox}${p.unit} Ã $${p.price}</div></div><strong>$${sub.toLocaleString()}</strong></div>`;
   });
-  if (!html) html = '<div style="color:#999;font-size:12px;padding:8px 0;">無選購商品</div>';
+  if (!html) html = '<div style="color:#999;font-size:12px;padding:8px 0;">ç¡é¸è³¼åå</div>';
   document.getElementById('summary-items').innerHTML = html;
   document.getElementById('summary-total').textContent = '$' + grandTotal.toLocaleString();
 
@@ -593,11 +593,11 @@ function buildSummary() {
   document.getElementById('r_note').textContent = note;
 }
 
-// ─── 送出訂單 → Google Sheet ─────────────────────────────
+// âââ éåºè¨å® â Google Sheet âââââââââââââââââââââââââââââ
 async function submitOrder() {
   const orderId = 'ORD-' + Date.now().toString().slice(-8);
 
-  // 建立訂單資料
+  // å»ºç«è¨å®è³æ
   const delivery = document.querySelector('input[name="delivery"]:checked').value;
   let itemsList = [], grandTotal = 0;
   Object.entries(products).forEach(([id, p]) => {
@@ -605,7 +605,7 @@ async function submitOrder() {
     if (!boxes) return;
     const sub = boxes * p.perBox * p.price;
     grandTotal += sub;
-    itemsList.push(`${p.name} ×${boxes}箱（$${sub.toLocaleString()}）`);
+    itemsList.push(`${p.name} Ã${boxes}ç®±ï¼$${sub.toLocaleString()}ï¼`);
   });
 
   const orderData = {
@@ -623,14 +623,14 @@ async function submitOrder() {
     notifyEmail: NOTIFY_EMAIL,
   };
 
-  // 儲存客戶記憶
+  // å²å­å®¢æ¶è¨æ¶
   saveMemory();
 
-  // 顯示送出中 spinner
+  // é¡¯ç¤ºéåºä¸­ spinner
   document.getElementById('spinner').classList.add('show');
 
-  // 送到 Google Apps Script
-  if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbx8-bifpVNLRPm-qoXPezTvNbaX6deezU7P6fmZzEhNmGfXC_D2eb0DkwRHm6aMSpRJ/exec') {
+  // éå° Google Apps Script
+  if (GOOGLE_SCRIPT_URL) {
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -639,22 +639,22 @@ async function submitOrder() {
         body: JSON.stringify(orderData),
       });
     } catch(e) {
-      console.warn('訂單記錄失敗，但繼續流程', e);
+      console.warn('è¨å®è¨éå¤±æï¼ä½ç¹¼çºæµç¨', e);
     }
   }
 
   document.getElementById('spinner').classList.remove('show');
 
-  // 顯示成功畫面
+  // é¡¯ç¤ºæåç«é¢
   document.getElementById('order-id').textContent = orderId;
-  let successHtml = '<h4>訂購明細</h4>';
+  let successHtml = '<h4>è¨è³¼æç´°</h4>';
   Object.entries(products).forEach(([id, p]) => {
     const boxes = getQty(id);
     if (!boxes) return;
     const sub = boxes * p.perBox * p.price;
-    successHtml += `<div class="detail-row"><span>${p.name} ×${boxes}箱</span><span>$${sub.toLocaleString()}</span></div>`;
+    successHtml += `<div class="detail-row"><span>${p.name} Ã${boxes}ç®±</span><span>$${sub.toLocaleString()}</span></div>`;
   });
-  successHtml += `<div class="detail-row" style="margin-top:6px;border-top:1.5px solid #eee;padding-top:8px;"><span><strong>商品合計</strong></span><span><strong style="color:#C0392B">$${grandTotal.toLocaleString()}</strong></span></div>`;
+  successHtml += `<div class="detail-row" style="margin-top:6px;border-top:1.5px solid #eee;padding-top:8px;"><span><strong>åååè¨</strong></span><span><strong style="color:#C0392B">$${grandTotal.toLocaleString()}</strong></span></div>`;
   document.getElementById('success-detail').innerHTML = successHtml;
 
   document.getElementById('bottom-bar').style.display = 'none';
@@ -664,7 +664,7 @@ async function submitOrder() {
   window.scrollTo(0, 0);
 }
 
-// ─── 重置 ────────────────────────────────────────────────
+// âââ éç½® ââââââââââââââââââââââââââââââââââââââââââââââââ
 function resetAll() {
   Object.keys(products).forEach(id => {
     document.getElementById('qty_' + id).value = 0;
@@ -683,7 +683,7 @@ function resetAll() {
   document.getElementById('step4').classList.remove('active');
   currentStep = 1;
   document.getElementById('step1').classList.add('active');
-  document.getElementById('btn-next').innerHTML = '選好了，填寫資料 → <span class="cart-count" id="cart-badge" style="display:none">0箱</span>';
+  document.getElementById('btn-next').innerHTML = 'é¸å¥½äºï¼å¡«å¯«è³æ â <span class="cart-count" id="cart-badge" style="display:none">0ç®±</span>';
   document.getElementById('btn-back').style.display = 'none';
   document.getElementById('bottom-bar').style.display = 'flex';
   window.scrollTo(0, 0);
